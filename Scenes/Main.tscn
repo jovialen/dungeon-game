@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://byys3rqrnpujh"]
+[gd_scene load_steps=4 format=3 uid="uid://byys3rqrnpujh"]
 
 [ext_resource type="PackedScene" uid="uid://bhig2uvs8teqq" path="res://Scenes/Characters/Player.tscn" id="2_b4ftn"]
 [ext_resource type="Texture2D" uid="uid://b08vdejlsb6pl" path="res://Assets/0x72_16x16DungeonTileset.v5/items/box.png" id="2_t1g5l"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyn7h"]
+size = Vector2(16, 20)
+
 [node name="Node" type="Node"]
 
-[node name="Box" type="Sprite2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.22913, 1.45798)
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("2_t1g5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_jyn7h")
 
 [node name="Player" parent="." instance=ExtResource("2_b4ftn")]
 position = Vector2(105, 2)
+SPEED = 200.0
