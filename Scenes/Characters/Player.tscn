@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhig2uvs8teqq"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_f7ce8"]
+[ext_resource type="Texture2D" uid="uid://dj1pxogigjwmx" path="res://Assets/0x72_16x16DungeonTileset.v5/items/npc_knight_blue.png" id="2_o7uwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1p15"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_f7ce8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c1p15")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o7uwv")
