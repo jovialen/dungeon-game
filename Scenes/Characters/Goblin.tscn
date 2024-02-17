@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/Health.gd" id="2_funha"]
 [ext_resource type="Script" path="res://Scripts/State Machine/State Machine.gd" id="3_tcb2r"]
 [ext_resource type="Script" path="res://Scripts/State Machine/WanderState.gd" id="4_ay6tg"]
-[ext_resource type="Script" path="res://Scripts/Characters/GoblinAnimation.gd" id="5_fkmht"]
+[ext_resource type="Script" path="res://Scripts/Characters/SimpleWalkingAnimationController.gd" id="5_fkmht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi5t8"]
 size = Vector2(9, 10)

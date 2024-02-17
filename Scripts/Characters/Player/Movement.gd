@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Movement
 
 
-@export var SPEED := 300.0
+@export var SPEED := 100.0
 
 
 func _physics_process(delta):

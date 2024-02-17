@@ -19,6 +19,5 @@ zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_b4ftn")]
 position = Vector2(105, 2)
-SPEED = 200.0
 
 [node name="Goblin" parent="." instance=ExtResource("3_a1uqo")]
