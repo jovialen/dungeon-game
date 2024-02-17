@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=3 uid="uid://c2k73q18jbnub"]
+
+[ext_resource type="Texture2D" uid="uid://ee51e476jqbq" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_goblin.png" id="1_lsish"]
+[ext_resource type="Script" path="res://Scripts/Characters/FlipWithMovementDirection.gd" id="2_00mbp"]
+[ext_resource type="Script" path="res://Scripts/Characters/Health.gd" id="2_funha"]
+[ext_resource type="Script" path="res://Scripts/State Machine/State Machine.gd" id="3_tcb2r"]
+[ext_resource type="Script" path="res://Scripts/State Machine/WanderState.gd" id="4_ay6tg"]
+[ext_resource type="Script" path="res://Scripts/Characters/GoblinAnimation.gd" id="5_fkmht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi5t8"]
+size = Vector2(9, 10)
+
+[sub_resource type="Animation" id="Animation_3ob8g"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_aji8l"]
+resource_name = "walking"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mggub"]
+_data = {
+"idle": SubResource("Animation_3ob8g"),
+"walking": SubResource("Animation_aji8l")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w80fn"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n6hps"]
+animation = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33tr7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g2hbb"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owsh0"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ucv85"]
+states/idle/node = SubResource("AnimationNodeAnimation_w80fn")
+states/idle/position = Vector2(399, 100)
+states/walking/node = SubResource("AnimationNodeAnimation_n6hps")
+states/walking/position = Vector2(647, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_33tr7"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_g2hbb"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_owsh0")]
+
+[node name="Goblin" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_pi5t8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("parent")]
+texture = ExtResource("1_lsish")
+script = ExtResource("2_00mbp")
+parent = NodePath("..")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_funha")
+max_health = 3
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+editor_description = "A finite state machine determening behaviour."
+script = ExtResource("3_tcb2r")
+initial_state = NodePath("WanderState")
+
+[node name="WanderState" type="Node" parent="State Machine" node_paths=PackedStringArray("parent")]
+editor_description = "State for idle walking around the scene."
+script = ExtResource("4_ay6tg")
+parent = NodePath("../..")
+
+[node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("parent")]
+libraries = {
+"": SubResource("AnimationLibrary_mggub")
+}
+tree_root = SubResource("AnimationNodeStateMachine_ucv85")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_idle = false
+parameters/conditions/is_moving = false
+script = ExtResource("5_fkmht")
+parent = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mggub")
+}
