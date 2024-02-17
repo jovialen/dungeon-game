@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bhig2uvs8teqq"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Player/Movement.gd" id="1_f7ce8"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player.gd" id="1_5j1f7"]
 [ext_resource type="Texture2D" uid="uid://dj1pxogigjwmx" path="res://Assets/0x72_16x16DungeonTileset.v5/items/npc_knight_blue.png" id="2_o7uwv"]
 [ext_resource type="Script" path="res://Scripts/Characters/Health.gd" id="3_ox42a"]
 [ext_resource type="Script" path="res://Scripts/Characters/FlipWithMovementDirection.gd" id="3_vxmvl"]
@@ -59,11 +59,11 @@ states/walking/node = SubResource("AnimationNodeAnimation_f7roq")
 states/walking/position = Vector2(680, 100)
 transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_2o1wj"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_vywkk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_4ao5s")]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_f7ce8")
+script = ExtResource("1_5j1f7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("parent")]
 y_sort_enabled = true

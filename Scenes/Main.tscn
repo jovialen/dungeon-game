@@ -27,3 +27,9 @@ layer_1/tile_data = PackedInt32Array(327673, 917504, 11, 327676, 983040, 13, 655
 position = Vector2(105, 2)
 
 [node name="Goblin" parent="TileMap" instance=ExtResource("3_a1uqo")]
+
+[node name="Goblin2" parent="TileMap" instance=ExtResource("3_a1uqo")]
+position = Vector2(14, -3)
+
+[node name="Goblin3" parent="TileMap" instance=ExtResource("3_a1uqo")]
+position = Vector2(8, 13)

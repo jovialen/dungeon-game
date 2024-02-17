@@ -44,4 +44,5 @@ func change_state(state: String):
 	states[old_state].stop()
 	states[current_state].start()
 	
+	print("state changed from " + old_state + " to " + current_state)
 	emit_signal("state_changed", old_state, current_state)

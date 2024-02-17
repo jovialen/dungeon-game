@@ -6,13 +6,16 @@ class_name WanderState
 @export var wander_speed := 10.0
 @export var walking_period_range := Vector2(1, 3)
 @export var waiting_period_range := Vector2(1, 3)
+@export var sight_range := 100.0
 
+var player: CharacterBody2D
 var wander_dir := Vector2.ZERO
 var wander_time := 0.0
 
 
 func start():
 	_random_wander()
+	player = get_tree().get_nodes_in_group("player")[0]
 
 
 func update(delta):
@@ -30,7 +33,9 @@ func physics_update(delta):
 
 
 func consider_exit():
-	pass
+	var distance_to_player = (player.position - parent.position).length()
+	if distance_to_player < sight_range:
+		emit_signal("change_state", "chase")
 
 
 func _random_wander():

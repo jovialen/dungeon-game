@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Movement
+class_name Player
 
 
 @export var SPEED := 100.0
