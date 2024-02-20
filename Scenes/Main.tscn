@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bhig2uvs8teqq" path="res://Scenes/Characters/Player.tscn" id="2_b4ftn"]
 [ext_resource type="PackedScene" uid="uid://c2k73q18jbnub" path="res://Scenes/Characters/Goblin.tscn" id="3_a1uqo"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-y_sort_enabled = true
 scale = Vector2(1.22913, 1.45798)
 offset = Vector2(0, 10)
 zoom = Vector2(3, 3)
@@ -23,13 +23,13 @@ layer_1/name = "Decoration"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(327673, 917504, 11, 327676, 983040, 13, 65542, 327680, 7, 65543, 393216, 7, 6, 327680, 6, 7, 393216, 6, -131068, 327680, 6, -65532, 327680, 7, -131067, 393216, 6, -65531, 393216, 7, 131076, 851968, 11, 196612, 851968, 12, 262148, 851968, 13, 262146, 458752, 10, -196611, 851968, 11, -131075, 851968, 12, -65539, 851968, 13)
 
-[node name="Player" parent="TileMap" instance=ExtResource("2_b4ftn")]
+[node name="Player" parent="." instance=ExtResource("2_b4ftn")]
 position = Vector2(105, 2)
 
-[node name="Goblin" parent="TileMap" instance=ExtResource("3_a1uqo")]
+[node name="Goblin" parent="." instance=ExtResource("3_a1uqo")]
 
-[node name="Goblin2" parent="TileMap" instance=ExtResource("3_a1uqo")]
+[node name="Goblin2" parent="." instance=ExtResource("3_a1uqo")]
 position = Vector2(14, -3)
 
-[node name="Goblin3" parent="TileMap" instance=ExtResource("3_a1uqo")]
+[node name="Goblin3" parent="." instance=ExtResource("3_a1uqo")]
 position = Vector2(8, 13)

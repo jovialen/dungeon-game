@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhig2uvs8teqq"]
+[gd_scene load_steps=17 format=3 uid="uid://bhig2uvs8teqq"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player.gd" id="1_5j1f7"]
 [ext_resource type="Texture2D" uid="uid://dj1pxogigjwmx" path="res://Assets/0x72_16x16DungeonTileset.v5/items/npc_knight_blue.png" id="2_o7uwv"]
@@ -59,6 +59,9 @@ states/walking/node = SubResource("AnimationNodeAnimation_f7roq")
 states/walking/position = Vector2(680, 100)
 transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_2o1wj"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_vywkk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_4ao5s")]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lk0p"]
+size = Vector2(11, 15)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 collision_layer = 4
@@ -80,6 +83,7 @@ shape = SubResource("RectangleShape2D_c1p15")
 [node name="Health" type="Node" parent="."]
 editor_description = "Health of a node"
 script = ExtResource("3_ox42a")
+max_health = 3
 
 [node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("parent")]
 root_node = NodePath(".")
@@ -98,3 +102,12 @@ root_node = NodePath("../AnimationTree")
 libraries = {
 "": SubResource("AnimationLibrary_f0q6m")
 }
+
+[node name="Hitbox" type="Area2D" parent="."]
+editor_description = "Area of the player that collides with damage areas"
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -7.5)
+shape = SubResource("RectangleShape2D_7lk0p")

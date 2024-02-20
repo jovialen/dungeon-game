@@ -34,7 +34,7 @@ func _set_health(value):
 		"previous": prev_health,
 		"max": max_health,
 		"is_heal": current_health > prev_health,
-		"percent": current_health / max_health,
+		"percent": float(current_health) / float(max_health),
 	})
 	
 	if current_health == 0 and not has_died:
