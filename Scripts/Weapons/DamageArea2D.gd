@@ -15,6 +15,7 @@ func _ready():
 func _body_entered(body: Node2D):
 	body.hurt(damage)
 	emit_signal("damage_done", {
-		"body": body,
+		"by": self,
+		"to": body,
 		"damage": damage
 	})

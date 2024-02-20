@@ -27,7 +27,6 @@ func physics_update(delta):
 		return
 	
 	parent.velocity = direction * chase_speed
-	parent.move_and_slide()
 
 
 func wander():

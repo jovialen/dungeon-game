@@ -33,4 +33,5 @@ func hurt(points):
 
 
 func heal(points):
+	print("player healed ", points, " points")
 	health.heal(points)

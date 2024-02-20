@@ -29,7 +29,6 @@ func update(delta):
 func physics_update(delta):
 	if parent:
 		parent.velocity = wander_dir * wander_speed
-		parent.move_and_slide()
 
 
 func consider_exit():
