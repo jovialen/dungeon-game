@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://byys3rqrnpujh"]
+[gd_scene load_steps=5 format=3 uid="uid://byys3rqrnpujh"]
 
 [ext_resource type="TileSet" uid="uid://b1hj3kinmd1cr" path="res://Assets/0x72_16x16DungeonTileset.v5/16x16DungeonTilesetv5.tres" id="1_h5yh5"]
 [ext_resource type="PackedScene" uid="uid://bhig2uvs8teqq" path="res://Scenes/Characters/Player.tscn" id="2_b4ftn"]
 [ext_resource type="PackedScene" uid="uid://c2k73q18jbnub" path="res://Scenes/Characters/Goblin.tscn" id="3_a1uqo"]
+[ext_resource type="PackedScene" uid="uid://clohi56ea7eib" path="res://Scenes/Characters/Orc.tscn" id="4_ovlfw"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -33,3 +34,6 @@ position = Vector2(14, -3)
 
 [node name="Goblin3" parent="." instance=ExtResource("3_a1uqo")]
 position = Vector2(8, 13)
+
+[node name="Orc" parent="." instance=ExtResource("4_ovlfw")]
+position = Vector2(-70, 8)
