@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt204ecuutosn"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Weapon.gd" id="1_uo8ca"]
+[ext_resource type="Script" path="res://Scripts/Characters/Weapon.gd" id="1_sg6hc"]
 
 [sub_resource type="Animation" id="Animation_75wl7"]
 resource_name = "SwingWeapon"
@@ -45,10 +45,10 @@ _data = {
 "SwingWeapon": SubResource("Animation_75wl7")
 }
 
-[node name="Weapon" type="Area2D"]
+[node name="Sword" type="Area2D"]
 collision_layer = 0
 collision_mask = 10
-script = ExtResource("1_uo8ca")
+script = ExtResource("1_sg6hc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
