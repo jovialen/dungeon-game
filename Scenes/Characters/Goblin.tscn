@@ -66,7 +66,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7pjl"]
 size = Vector2(9, 10)
 
-[node name="Goblin" type="CharacterBody2D"]
+[node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
@@ -103,7 +103,7 @@ libraries = {
 script = ExtResource("2_funha")
 max_health = 1
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state") groups=["enemies"]]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 editor_description = "A finite state machine determening behaviour."
 script = ExtResource("3_tcb2r")
 initial_state = NodePath("Wander")
