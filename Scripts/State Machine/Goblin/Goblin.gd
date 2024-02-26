@@ -20,7 +20,7 @@ func state_changed(from, to):
 	var is_stunned = to == "stunned"
 	set_collision_mask_value(2, !is_stunned)
 	set_collision_layer_value(2, !is_stunned)
-	damage_area_2d.monitoring = !is_stunned
+	damage_area_2d.set_deferred("monitoring", !is_stunned)
 
 
 func damage_done(damage):
