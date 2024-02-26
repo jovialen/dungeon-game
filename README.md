@@ -7,9 +7,9 @@ Just another dungeon rogue-like.
 - [ ] Player
   - [x] Basic Movement
   - [ ] Dashing
-  - [ ] Weapons and attacks
+  - [x] Weapons and attacks
 - [ ] Enemies
-  - [ ] Melee
+  - [x] Melee
   - [ ] Ranged
   - [ ] Bombers
   - [ ] Spawners
@@ -19,3 +19,11 @@ Just another dungeon rogue-like.
 - [ ] Map
   - [ ] Maze generation
   - [ ] Rooms
+
+### Uke 9
+
+- [ ] Bomber Enemies
+  - [ ] Slimes
+  - [ ] Flame Spirits
+- [ ] Spawners
+  - [ ] Flame Spirit Spawners
