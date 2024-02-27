@@ -45,5 +45,5 @@ func died():
 
 func damage_done(damage):
 	state_machine.change_state("stunned")
-	var vector = damage["to"].position - damage["by"].position
+	var vector = damage["to"].global_position - damage["by"].global_position
 	velocity = -vector * knockback_speed

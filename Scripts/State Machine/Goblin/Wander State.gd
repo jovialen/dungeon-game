@@ -32,7 +32,7 @@ func physics_update(delta):
 
 
 func consider_exit():
-	var distance_to_player = (player.position - parent.position).length()
+	var distance_to_player = (player.global_position - parent.global_position).length()
 	if distance_to_player < sight_range:
 		emit_signal("change_state", "chase")
 

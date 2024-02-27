@@ -11,4 +11,4 @@ func spawn():
 		print("spawning " + str(count) + " enemies")
 		for i in count:
 			var node = enemy.instantiate()
-			add_child(node)
+			call_deferred("add_child", node)

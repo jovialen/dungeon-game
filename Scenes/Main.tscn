@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://byys3rqrnpujh"]
+[gd_scene load_steps=6 format=3 uid="uid://byys3rqrnpujh"]
 
+[ext_resource type="Script" path="res://Scripts/Rooms/FollowRoomCamera.gd" id="1_t8lux"]
 [ext_resource type="PackedScene" uid="uid://byg5oi8tfjb04" path="res://Scenes/Rooms/Room T.tscn" id="1_wk3by"]
 [ext_resource type="PackedScene" uid="uid://bhig2uvs8teqq" path="res://Scenes/Characters/Player.tscn" id="2_b4ftn"]
 [ext_resource type="Script" path="res://Scripts/Characters/Hand.gd" id="3_h4nau"]
@@ -8,11 +9,18 @@
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("initial_room")]
 scale = Vector2(1.22913, 1.45798)
 zoom = Vector2(3, 3)
+script = ExtResource("1_t8lux")
+movement_speed = 50.0
+initial_room = NodePath("../Room_T")
 
 [node name="Room_T" parent="." instance=ExtResource("1_wk3by")]
+position = Vector2(-91, 14)
+
+[node name="Room_T2" parent="." instance=ExtResource("1_wk3by")]
+position = Vector2(89, 14)
 
 [node name="Player" parent="." instance=ExtResource("2_b4ftn")]
 position = Vector2(-1, -123)

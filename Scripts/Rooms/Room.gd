@@ -1,5 +1,8 @@
 extends TileMap
+class_name Room
 
+
+signal player_trapped(room)
 
 @export var blocking_layer_index := 2
 
@@ -27,6 +30,7 @@ func _trapped():
 	for child in get_children():
 		if child is RoomSpawner:
 			child.spawn()
+	emit_signal("player_trapped", self)
 
 
 func matches(t, b, l, r):
