@@ -101,7 +101,7 @@ libraries = {
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_funha")
-max_health = 1
+max_health = 2
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 editor_description = "A finite state machine determening behaviour."
@@ -124,6 +124,8 @@ script = ExtResource("9_xewss")
 duration = 2.0
 next_state = NodePath("../Chase")
 parent = NodePath("../..")
+stop_velocity = null
+breaking_power = null
 
 [node name="DamageArea2D" type="Area2D" parent="."]
 collision_layer = 4

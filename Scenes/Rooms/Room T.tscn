@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2wco"]
 size = Vector2(160, 160)
 
-[node name="Room_T" type="TileMap" groups=["rooms"]]
+[node name="Room T" type="TileMap" groups=["rooms"]]
 y_sort_enabled = true
 tile_set = ExtResource("1_8puha")
 format = 2
@@ -28,6 +28,7 @@ top = true
 
 [node name="Trap" type="Area2D" parent="."]
 z_index = 1
+position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_s3oyw")
@@ -37,7 +38,7 @@ shape = SubResource("RectangleShape2D_t2wco")
 
 [node name="RoomSpawner" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(49, -49)
+position = Vector2(49, -48)
 script = ExtResource("6_mxy0u")
 enemy = ExtResource("5_wqvxf")
 count = 5

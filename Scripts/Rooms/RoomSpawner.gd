@@ -11,4 +11,6 @@ func spawn():
 		print("spawning " + str(count) + " enemies")
 		for i in count:
 			var node = enemy.instantiate()
+			node.position.x = randf_range(-5, 5)
+			node.position.y = randf_range(-5, 5)
 			call_deferred("add_child", node)
