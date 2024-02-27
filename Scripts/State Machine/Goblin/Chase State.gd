@@ -18,7 +18,7 @@ func physics_update(delta):
 		wander()
 		return
 	
-	var ab = player.position - parent.position
+	var ab = player.global_position - parent.global_position
 	var distance = ab.length()
 	var direction = ab.normalized()
 	
