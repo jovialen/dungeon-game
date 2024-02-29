@@ -33,3 +33,4 @@ script = ExtResource("3_h4nau")
 
 [node name="Room B" parent="." instance=ExtResource("6_q1nll")]
 position = Vector2(0, -224)
+tile_position = Vector2i(0, -1)
