@@ -12,7 +12,6 @@ size = Vector2(160, 160)
 
 [node name="Room TL" type="TileMap" groups=["rooms"]]
 y_sort_enabled = true
-position = Vector2(-4, -69)
 tile_set = ExtResource("1_6xceb")
 format = 2
 layer_0/name = "Room"
