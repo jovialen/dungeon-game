@@ -22,7 +22,10 @@ Just another dungeon rogue-like.
 
 ### Uke 9
 
-- [ ] Maze layout generation
+- [x] Maze layout generation
+
+### Uke 10
+
 - [ ] Bomber Enemies
   - [ ] Slimes
   - [ ] Flame Spirits
