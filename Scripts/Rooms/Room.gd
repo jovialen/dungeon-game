@@ -5,7 +5,6 @@ class_name Room
 signal player_trapped(room)
 
 @export var blocking_layer_index := 2
-@export var tile_position := Vector2i(0, 0)
 
 @export_category("Corridors")
 @export var top := false
@@ -15,12 +14,9 @@ signal player_trapped(room)
 
 @onready var trap = $Trap
 
-const ROOM_SIZE = Vector2i(224, 224)
-
 
 func _ready():
 	trap.connect("trapped", _trapped)
-	position = tile_position * ROOM_SIZE
 
 
 func _process(delta):

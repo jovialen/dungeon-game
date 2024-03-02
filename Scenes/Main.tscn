@@ -1,23 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://byys3rqrnpujh"]
+[gd_scene load_steps=6 format=3 uid="uid://byys3rqrnpujh"]
 
 [ext_resource type="Script" path="res://Scripts/Rooms/FollowRoomCamera.gd" id="1_t8lux"]
-[ext_resource type="PackedScene" uid="uid://byg5oi8tfjb04" path="res://Scenes/Rooms/Room T.tscn" id="1_wk3by"]
 [ext_resource type="PackedScene" uid="uid://bhig2uvs8teqq" path="res://Scenes/Characters/Player.tscn" id="2_b4ftn"]
 [ext_resource type="Script" path="res://Scripts/Characters/Hand.gd" id="3_h4nau"]
 [ext_resource type="PackedScene" uid="uid://crvavv8da7gjo" path="res://Scenes/Weapons/Rusted Sword.tscn" id="4_yisod"]
-[ext_resource type="PackedScene" uid="uid://b0yttvcl0a0um" path="res://Scenes/Rooms/Room B.tscn" id="6_q1nll"]
+[ext_resource type="Script" path="res://Scripts/Rooms/MazeGenerator.gd" id="7_mg4gu"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("initial_room")]
+[node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.22913, 1.45798)
 zoom = Vector2(3, 3)
 script = ExtResource("1_t8lux")
 movement_speed = 500.0
-initial_room = NodePath("../Room_T")
 
-[node name="Room_T" parent="." instance=ExtResource("1_wk3by")]
+[node name="Maze" type="Node2D" parent="."]
+script = ExtResource("7_mg4gu")
 
 [node name="Player" parent="." instance=ExtResource("2_b4ftn")]
 position = Vector2(-17, -20)
@@ -30,7 +29,3 @@ position = Vector2(0, -15)
 script = ExtResource("3_h4nau")
 
 [node name="Rusted Sword" parent="Player/Anchor/Hand" instance=ExtResource("4_yisod")]
-
-[node name="Room B" parent="." instance=ExtResource("6_q1nll")]
-position = Vector2(0, -224)
-tile_position = Vector2i(0, -1)
