@@ -2,6 +2,9 @@ extends TileMap
 class_name Room
 
 
+signal player_entered(Node2D)
+
+
 enum Corridor {
 	TOP,
 	LEFT,
@@ -34,6 +37,13 @@ const CORRIDOR_INDICES = {
 const BLOCKING_LAYER = 5
 
 
+@onready var area_2d = $Area2D
+
+
+func _ready():
+	area_2d.connect("body_entered", _player_entered)
+
+
 func set_passage(corridor: Corridor, enabled: bool) -> void:
 	set_layer_enabled(CORRIDOR_INDICES[corridor], !enabled)
 
@@ -45,3 +55,6 @@ func open() -> void:
 func close() -> void:
 	set_layer_enabled(BLOCKING_LAYER, true)
 
+
+func _player_entered(player: Node2D):
+	player_entered.emit(player)
