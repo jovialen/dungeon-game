@@ -64,7 +64,6 @@ func _are_united(union: Array[int], a: int, b: int) -> bool:
 
 
 func _unite(union: Array[int], a: int, b: int) -> Array[int]:
-	print(union)
 	union[_head(union, a)] = _head(union, b)
 	return union
 
