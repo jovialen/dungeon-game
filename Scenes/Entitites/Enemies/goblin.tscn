@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://blew0x2d0xcug"]
+
+[ext_resource type="Texture2D" uid="uid://ee51e476jqbq" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_goblin.png" id="1_03emy"]
+[ext_resource type="Script" path="res://Scripts/Entities/flip_with_velocity.gd" id="2_wr5la"]
+[ext_resource type="Script" path="res://Scripts/Finite State Machine/finite_state_machine.gd" id="3_cr7mw"]
+[ext_resource type="Script" path="res://Scripts/Finite State Machine/States/follow_player_state.gd" id="4_87jtg"]
+[ext_resource type="Script" path="res://Scripts/Finite State Machine/States/monitoring_state.gd" id="5_uix5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxv04"]
+size = Vector2(8, 10)
+
+[node name="Goblin" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_nxv04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_03emy")
+script = ExtResource("2_wr5la")
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_cr7mw")
+initial_state = NodePath("MonitoringState")
+
+[node name="FollowPlayerState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("follower")]
+script = ExtResource("4_87jtg")
+follower = NodePath("../..")
+max_speed = 50
+acceleration = 90
+deceleration = 125
+
+[node name="MonitoringState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("watcher", "next_state")]
+script = ExtResource("5_uix5s")
+watcher = NodePath("../..")
+watching_groups = Array[String](["player"])
+sight = 100
+next_state = NodePath("../FollowPlayerState")
