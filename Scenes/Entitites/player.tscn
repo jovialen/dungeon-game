@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cin7ob10yoaxh"]
+[gd_scene load_steps=6 format=3 uid="uid://cin7ob10yoaxh"]
 
 [ext_resource type="Texture2D" uid="uid://dj1pxogigjwmx" path="res://Assets/0x72_16x16DungeonTileset.v5/items/npc_knight_blue.png" id="1_4ngg3"]
 [ext_resource type="Script" path="res://Scripts/Entities/player.gd" id="1_u7ms5"]
+[ext_resource type="Script" path="res://Scripts/Entities/flip_with_velocity.gd" id="3_d7frr"]
 [ext_resource type="Texture2D" uid="uid://14fjifch8t5t" path="res://Assets/bitbrain_godot_tutorials_2d_lighting/light.png" id="3_xpbkf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iscje"]
@@ -12,13 +13,18 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_u7ms5")
+max_speed = 160
+acceleration = 150
+deceleration = 225
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_iscje")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("mover")]
 texture = ExtResource("1_4ngg3")
+script = ExtResource("3_d7frr")
+mover = NodePath("..")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.972549, 0.764706, 0.466667, 1)
