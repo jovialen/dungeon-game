@@ -1,15 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://s5cujmxlkqg8"]
 
-[ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="1_htkuu"]
+[ext_resource type="Script" path="res://Scripts/Rooms/maze.gd" id="1_v7jbl"]
 [ext_resource type="PackedScene" uid="uid://cin7ob10yoaxh" path="res://Scenes/Entitites/player.tscn" id="2_pcksf"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Room" parent="." instance=ExtResource("1_htkuu")]
+[node name="Maze" type="Node2D" parent="."]
+script = ExtResource("1_v7jbl")
+room_size = Vector2(12, 13)
 
 [node name="Player" parent="." instance=ExtResource("2_pcksf")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -9)
 zoom = Vector2(3, 3)

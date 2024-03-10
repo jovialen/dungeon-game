@@ -1,4 +1,5 @@
 extends TileMap
+class_name Room
 
 
 enum Corridor {
@@ -8,6 +9,20 @@ enum Corridor {
 	BOTTOM,
 }
 
+
+const REVERSE_CORRIDOR = {
+	Corridor.TOP: Corridor.BOTTOM,
+	Corridor.BOTTOM: Corridor.TOP,
+	Corridor.LEFT: Corridor.RIGHT,
+	Corridor.RIGHT: Corridor.LEFT
+}
+
+const CORRIDOR_OFFSETS = {
+	Corridor.TOP: Vector2(0, 1),
+	Corridor.BOTTOM: Vector2(0, -1),
+	Corridor.LEFT: Vector2(-1, 0),
+	Corridor.RIGHT: Vector2(1, 0)
+}
 
 const CORRIDOR_INDICES = {
 	Corridor.TOP: 3,
