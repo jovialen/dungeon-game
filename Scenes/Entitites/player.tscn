@@ -21,6 +21,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_iscje")
 
 [node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("mover")]
+y_sort_enabled = true
 texture = ExtResource("1_4ngg3")
 script = ExtResource("3_d7frr")
 mover = NodePath("..")
