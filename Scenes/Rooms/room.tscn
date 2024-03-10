@@ -1,10 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://clt4orhp7tdoj"]
+[gd_scene load_steps=13 format=3 uid="uid://clt4orhp7tdoj"]
 
 [ext_resource type="TileSet" uid="uid://b1hj3kinmd1cr" path="res://Assets/0x72_16x16DungeonTileset.v5/16x16DungeonTilesetv5.tres" id="1_uw605"]
 [ext_resource type="Script" path="res://Scripts/Rooms/room.gd" id="2_8g1un"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1kdc"]
 size = Vector2(182, 186)
+
+[sub_resource type="Animation" id="Animation_a7pe5"]
+resource_name = "close_room"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:layer_5/modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjnps"]
+resource_name = "open_room"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:layer_5/modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igonq"]
+_data = {
+"close_room": SubResource("Animation_a7pe5"),
+"open_room": SubResource("Animation_hjnps")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy6ko"]
+animation = &"close_room"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ap4ab"]
+animation = &"open_room"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6byd8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ewo3r"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"room_closed"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hluiw"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"room_opened"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eiwrr"]
+states/close_room/node = SubResource("AnimationNodeAnimation_oy6ko")
+states/close_room/position = Vector2(698, 100)
+states/open_room/node = SubResource("AnimationNodeAnimation_ap4ab")
+states/open_room/position = Vector2(428, 100)
+transitions = ["Start", "open_room", SubResource("AnimationNodeStateMachineTransition_6byd8"), "open_room", "close_room", SubResource("AnimationNodeStateMachineTransition_ewo3r"), "close_room", "open_room", SubResource("AnimationNodeStateMachineTransition_hluiw")]
+graph_offset = Vector2(-573, -17)
 
 [node name="Room" type="TileMap" groups=["rooms"]]
 y_sort_enabled = true
@@ -37,11 +102,32 @@ layer_7/y_sort_enabled = true
 layer_7/tile_data = PackedInt32Array()
 script = ExtResource("2_8g1un")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Player Area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Area"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_m1kdc")
+
+[node name="Enemies Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies Area"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_m1kdc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_igonq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_igonq")
+}
+tree_root = SubResource("AnimationNodeStateMachine_eiwrr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/room_closed = false
+parameters/conditions/room_opened = false

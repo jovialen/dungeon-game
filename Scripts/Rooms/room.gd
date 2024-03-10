@@ -3,6 +3,7 @@ class_name Room
 
 
 signal player_entered(Node2D)
+signal room_cleared
 
 
 enum Corridor {
@@ -37,11 +38,25 @@ const CORRIDOR_INDICES = {
 const BLOCKING_LAYER = 5
 
 
-@onready var area_2d = $Area2D
+@onready var area_2d = $"Player Area"
+@onready var enemy_area = $"Enemies Area"
+@onready var animation_tree = $AnimationTree
+
+var cleared := false
+var closed := false
 
 
 func _ready():
 	area_2d.connect("body_entered", _player_entered)
+	animation_tree.connect("animation_finished", _animation_finished)
+
+
+func _process(delta):
+	if closed:
+		cleared = len(enemy_area.get_overlapping_bodies()) == 0
+		
+		if cleared:
+			_clear_room()
 
 
 func set_passage(corridor: Corridor, enabled: bool) -> void:
@@ -49,12 +64,39 @@ func set_passage(corridor: Corridor, enabled: bool) -> void:
 
 
 func open() -> void:
-	set_layer_enabled(BLOCKING_LAYER, false)
+	closed = false
+	animation_tree["parameters/conditions/room_closed"] = false
+	animation_tree["parameters/conditions/room_opened"] = true
 
 
 func close() -> void:
-	set_layer_enabled(BLOCKING_LAYER, true)
+	closed = true
+	animation_tree["parameters/conditions/room_closed"] = true
+	animation_tree["parameters/conditions/room_opened"] = false
+
+
+func reset() -> void:
+	open()
+	cleared = false
+	if player_in_room():
+		_player_entered(get_tree().get_first_node_in_group("player"))
+
+
+func player_in_room() -> bool:
+	return area_2d.has_overlapping_bodies()
 
 
 func _player_entered(player: Node2D):
 	player_entered.emit(player)
+	if not cleared:
+		close()
+
+
+func _clear_room():
+	open()
+	cleared = true
+	room_cleared.emit()
+
+
+func _animation_finished(ignore):
+	set_layer_enabled(BLOCKING_LAYER, closed)

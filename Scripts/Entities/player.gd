@@ -11,6 +11,15 @@ func _ready():
 
 
 func _process(delta):
+	_move(delta)
+	
+	if Input.is_action_pressed("primary_attack"):
+		var enemies = get_tree().get_nodes_in_group("enemies")
+		for enemy in enemies:
+			enemy.queue_free()
+
+
+func _move(delta):
 	var dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	dir = dir.normalized()
 	var target_speed = dir * max_speed
