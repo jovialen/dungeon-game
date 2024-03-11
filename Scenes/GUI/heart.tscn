@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://1044thdwfyqe"]
+
+[ext_resource type="Texture2D" uid="uid://d4nc72stwoje6" path="res://Assets/0x72_16x16DungeonTileset.v5/items/skull.png" id="1_np4nk"]
+
+[node name="Heart" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(6, 6)
+anchors_preset = -1
+anchor_right = 0.005
+anchor_bottom = 0.009
+offset_right = 0.24
+offset_bottom = 0.168
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 1)
+texture = ExtResource("1_np4nk")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cccebbn3l5jta"]
+
+[ext_resource type="PackedScene" uid="uid://bwq7n7eo3f4xy" path="res://Scenes/Rooms/crate_room.tscn" id="1_3s22b"]
+[ext_resource type="PackedScene" uid="uid://blew0x2d0xcug" path="res://Scenes/Entitites/Enemies/goblin.tscn" id="2_1sr24"]
+[ext_resource type="PackedScene" uid="uid://duinnw5kh3goe" path="res://Scenes/Entitites/Enemies/orc.tscn" id="3_ejpgi"]
+
+[node name="Room2" instance=ExtResource("1_3s22b")]
+
+[node name="Goblin" parent="." index="4" instance=ExtResource("2_1sr24")]
+position = Vector2(-9, 8)
+
+[node name="Goblin2" parent="." index="5" instance=ExtResource("2_1sr24")]
+position = Vector2(0, -14)
+
+[node name="Goblin3" parent="." index="6" instance=ExtResource("2_1sr24")]
+position = Vector2(15, 3)
+
+[node name="Orc" parent="." index="7" instance=ExtResource("3_ejpgi")]
+position = Vector2(-18, -10)

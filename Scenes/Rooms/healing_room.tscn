@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://du1vcb04d2ahr"]
+
+[ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="1_7dbus"]
+[ext_resource type="PackedScene" uid="uid://c63kwm1jpt4g4" path="res://Scenes/Interactables/health_potion.tscn" id="2_75ath"]
+
+[node name="Room" instance=ExtResource("1_7dbus")]
+layer_6/tile_data = PackedInt32Array(-327684, 851968, 4, -327683, 786432, 4, -393214, 917504, 4, -393213, 983040, 4, 393212, 196608, 1, 327683, 262144, 0, 327682, 196608, 0, -1, 655360, 6, -65536, 720896, 6)
+layer_7/tile_data = PackedInt32Array(-131073, 655360, 4, -65537, 655360, 5, -196608, 720896, 4, -131072, 720896, 5)
+
+[node name="Health Potion" parent="." index="4" instance=ExtResource("2_75ath")]

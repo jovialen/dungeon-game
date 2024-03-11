@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 
+signal health_changed
+
+
 @export_category("Movement")
 @export var max_speed := 200
 @export var acceleration := 200
@@ -17,6 +20,7 @@ var weapon_cooldown_timer := 0.0
 
 func _ready():
 	health.connect("death", _on_player_death)
+	health.connect("health_changed", func(h): health_changed.emit(h))
 
 
 func _process(delta):
@@ -27,6 +31,10 @@ func _process(delta):
 		weapon_cooldown_timer > weapon_cooldown:
 		weapon_cooldown_timer = 0.0
 		_attack()
+
+
+func get_max_health() -> int:
+	return health.max_health
 
 
 func _move(delta):

@@ -15,6 +15,8 @@ func _ready():
 
 
 func _on_health_area_entered(node):
+	print(node.name)
+	
 	for hurt in hurters:
 		if node.is_in_group(hurt):
 			health.damage(fragility)

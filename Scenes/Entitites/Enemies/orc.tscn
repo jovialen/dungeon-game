@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://duinnw5kh3goe"]
+
+[ext_resource type="PackedScene" uid="uid://blew0x2d0xcug" path="res://Scenes/Entitites/Enemies/goblin.tscn" id="1_1atng"]
+[ext_resource type="Texture2D" uid="uid://dib3b44q502f" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_orc.png" id="2_5uv2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6cq3"]
+resource_local_to_scene = true
+size = Vector2(10, 15)
+
+[node name="Orc" instance=ExtResource("1_1atng")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_a6cq3")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_5uv2a")
+
+[node name="FollowPlayerState" parent="FiniteStateMachine" index="0"]
+max_speed = 20
+
+[node name="StunState" parent="FiniteStateMachine" index="2"]
+stun_time = 0.8
+
+[node name="Health" parent="." index="3"]
+max_health = 4
+grace_period = 1.0
+
+[node name="CollisionShape2D" parent="HealthArea" index="0"]
+visible = false
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_a6cq3")

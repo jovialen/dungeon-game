@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c63kwm1jpt4g4"]
+
+[ext_resource type="Texture2D" uid="uid://c25l31abpv64b" path="res://Assets/0x72_16x16DungeonTileset.v5/items/flask_big_green.png" id="1_bd54x"]
+[ext_resource type="Script" path="res://Scripts/Interactables/potion.gd" id="1_lrpnr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7d714"]
+radius = 4.47214
+
+[node name="Health Potion" type="Node2D" groups=["health_potion"]]
+script = ExtResource("1_lrpnr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bd54x")
+
+[node name="Area2D" type="Area2D" parent="." groups=["health_potion"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7d714")
