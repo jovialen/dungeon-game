@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s5cujmxlkqg8"]
+[gd_scene load_steps=9 format=3 uid="uid://s5cujmxlkqg8"]
 
 [ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="1_htkuu"]
 [ext_resource type="Script" path="res://Scripts/Rooms/maze.gd" id="1_v7jbl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Rooms/room_camera.gd" id="3_iiqyb"]
 [ext_resource type="PackedScene" uid="uid://bwq7n7eo3f4xy" path="res://Scenes/Rooms/crate_room.tscn" id="3_wchw6"]
 [ext_resource type="Texture2D" uid="uid://14fjifch8t5t" path="res://Assets/bitbrain_godot_tutorials_2d_lighting/light.png" id="4_v7h5a"]
+[ext_resource type="PackedScene" uid="uid://dc78pxqtar8wm" path="res://Scenes/Rooms/floor_enterance.tscn" id="5_1bp8f"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -21,6 +22,10 @@ rooms = Array[PackedScene]([ExtResource("3_wchw6")])
 script = ExtResource("2_4yi42")
 
 [node name="Room" parent="Maze/EditorOnlyRoom" instance=ExtResource("1_htkuu")]
+layer_3/enabled = false
+
+[node name="Room2" parent="Maze/EditorOnlyRoom" instance=ExtResource("5_1bp8f")]
+position = Vector2(0, -202)
 
 [node name="Player" parent="." instance=ExtResource("2_pcksf")]
 position = Vector2(0, -193)
