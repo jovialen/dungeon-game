@@ -15,15 +15,15 @@ y_sort_enabled = true
 y_sort_enabled = true
 script = ExtResource("1_v7jbl")
 room_size = Vector2(12, 13)
-rooms = Array[PackedScene]([ExtResource("1_htkuu"), ExtResource("3_wchw6")])
+rooms = Array[PackedScene]([ExtResource("3_wchw6")])
 
 [node name="EditorOnlyRoom" type="Node" parent="Maze"]
 script = ExtResource("2_4yi42")
 
 [node name="Room" parent="Maze/EditorOnlyRoom" instance=ExtResource("1_htkuu")]
-layer_5/modulate = Color(1, 1, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_pcksf")]
+position = Vector2(0, -193)
 
 [node name="RoomCamera" type="Camera2D" parent="."]
 position = Vector2(0, -9)

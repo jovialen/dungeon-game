@@ -56,4 +56,5 @@ func _attack():
 
 
 func _on_player_death():
-	get_tree().reload_current_scene()
+	get_node("/root/LevelData").reset()
+	get_tree().call_deferred("reload_current_scene")

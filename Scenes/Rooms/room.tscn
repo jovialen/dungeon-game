@@ -92,6 +92,7 @@ layer_4/z_index = -1
 layer_4/tile_data = PackedInt32Array(393214, 1310720, 1, 327681, 1245184, 1, 393215, 1114112, 0, 327680, 1114112, 0)
 layer_5/name = "Blocking"
 layer_5/enabled = false
+layer_5/modulate = Color(1, 1, 1, 0)
 layer_5/z_index = -1
 layer_5/tile_data = PackedInt32Array(-131067, 1048576, 1, -65531, 1048576, 1, 5, 1310720, 2, 65530, 1245184, 2, -6, 1179648, 2, -65542, 1179648, 2, -458754, 1048576, 0, -524287, 1179648, 0, -458753, 1114112, 0, -524288, 1114112, 0, 393215, 1114112, 0, 327680, 1114112, 0, -393217, 65536, 1, -458752, 65536, 1)
 layer_6/name = "Ground Decoration"
@@ -107,6 +108,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Area"]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_m1kdc")
 
@@ -115,6 +117,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies Area"]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_m1kdc")
 

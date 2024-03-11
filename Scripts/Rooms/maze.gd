@@ -1,15 +1,21 @@
 extends Node2D
 
 
+@export var autoload := true
 @export var maze_size := Vector2(3, 3)
 @export var tile_size := Vector2(16, 16)
 @export var room_size := Vector2(20, 20)
+@export var room_enterance := preload("res://Scenes/Rooms/floor_enterance.tscn")
+@export var room_exits : Array[PackedScene] = [preload("res://Scenes/Rooms/floor_exit.tscn")]
 @export var rooms : Array[PackedScene] = [
 	preload("res://Scenes/Rooms/room.tscn")
 ]
 
 
 func _ready():
+	if autoload:
+		maze_size = get_node("/root/LevelData").level_size
+	
 	var grid = []
 	var edges = []
 	var room_position = Vector2()
@@ -50,6 +56,26 @@ func _ready():
 		
 		grid[x][y].set_passage(dir, true)
 		grid[nx][ny].set_passage(reverse, true)
+	
+	room_position = grid[0][0].position
+	room_position.y -= room_size.y * tile_size.y
+	var enterance = room_enterance.instantiate()
+	enterance.position = room_position
+	add_child(enterance)
+	
+	get_tree().get_first_node_in_group("player").position = room_position
+	
+	grid[0][0].set_passage(Room.Corridor.TOP, true)
+	enterance.set_passage(Room.Corridor.BOTTOM, true)
+	
+	room_position = grid[-1][-1].position
+	room_position.y += room_size.y * tile_size.y
+	var exit = room_exits.pick_random().instantiate()
+	exit.position = room_position
+	add_child(exit)
+	
+	grid[-1][-1].set_passage(Room.Corridor.BOTTOM, true)
+	exit.set_passage(Room.Corridor.TOP, true)
 
 
 func _create_union_list(size: int) -> Array[int]:
