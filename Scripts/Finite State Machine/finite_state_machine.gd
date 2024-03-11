@@ -32,6 +32,8 @@ func set_state(state: State):
 		print("state ", state.name, " is not in state machine states")
 		return
 	
+	print("setting state to ", state.name)
+	
 	if current_state:
 		current_state.stop()
 		current_state.set_process(false)

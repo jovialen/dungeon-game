@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
 
+@export_category("Movement")
 @export var max_speed := 200
 @export var acceleration := 200
 @export var deceleration := 200
 
+@export_category("Weapons")
+@export var weapon : PackedScene = preload("res://Scenes/Entitites/weapon.tscn")
+@export var weapon_cooldown := 0.4
+
 @onready var health = $Health
+
+var weapon_cooldown_timer := 0.0
 
 
 func _ready():
@@ -15,11 +22,11 @@ func _ready():
 func _process(delta):
 	_move(delta)
 	
-	if Input.is_action_pressed("primary_attack"):
-		var enemies = get_tree().get_nodes_in_group("enemies")
-		for enemy in enemies:
-			if global_position.distance_to(enemy.global_position) < 100:
-				enemy.queue_free()
+	weapon_cooldown_timer += delta
+	if Input.is_action_just_pressed("primary_attack") and \
+		weapon_cooldown_timer > weapon_cooldown:
+		weapon_cooldown_timer = 0.0
+		_attack()
 
 
 func _move(delta):
@@ -32,12 +39,20 @@ func _move(delta):
 		weight = delta * deceleration / 10
 	else:
 		weight = delta * acceleration / 10
-		
+	
 	
 	velocity.x = lerpf(velocity.x, target_speed.x, weight)
 	velocity.y = lerpf(velocity.y, target_speed.y, weight)
 	
 	move_and_slide()
+
+
+func _attack():
+	var mouse_position = get_global_mouse_position()
+	var angle_to_mouse = global_position.angle_to_point(mouse_position) + PI/2
+	var attack = weapon.instantiate()
+	attack.rotation = angle_to_mouse
+	add_child(attack)
 
 
 func _on_player_death():

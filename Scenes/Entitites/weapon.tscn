@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://3clxwof1ag4d"]
+
+[ext_resource type="Texture2D" uid="uid://b2vpugnt8lka" path="res://Assets/0x72_16x16DungeonTileset.v5/items/weapon_sword_silver.png" id="1_6ktlm"]
+[ext_resource type="Script" path="res://Scripts/Entities/weapon.gd" id="1_hgn6l"]
+[ext_resource type="Texture2D" uid="uid://cq7rwtw7ksgfg" path="res://Assets/custom/sword_trail.png" id="3_be1yj"]
+
+[sub_resource type="Animation" id="Animation_hq0eu"]
+resource_name = "sword_swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [-1.22173, 1.22173]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5py0a"]
+_data = {
+"sword_swing": SubResource("Animation_hq0eu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njq75"]
+animation = &"sword_swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ikt3c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vfpy5"]
+states/Start/position = Vector2(212, 100)
+states/sword_swing/node = SubResource("AnimationNodeAnimation_njq75")
+states/sword_swing/position = Vector2(425, 101)
+transitions = ["Start", "sword_swing", SubResource("AnimationNodeStateMachineTransition_ikt3c")]
+
+[node name="Weapon Root" type="Node2D"]
+
+[node name="Weapon" type="Node2D" parent="." groups=["weapon"]]
+rotation = 1.22173
+script = ExtResource("1_hgn6l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+position = Vector2(0, -15)
+texture = ExtResource("1_6ktlm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon/Sprite2D"]
+visible = false
+show_behind_parent = true
+position = Vector2(-7.17207, -0.380553)
+texture = ExtResource("3_be1yj")
+
+[node name="Area2D" type="Area2D" parent="Weapon" groups=["player_attack"]]
+position = Vector2(0, -15)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D"]
+polygon = PackedVector2Array(-3, 15, 3, 15, 3, -7, 1, -9, 0, -10, -1, -9, -3, -7)
+
+[node name="AnimationTree" type="AnimationTree" parent="Weapon"]
+libraries = {
+"": SubResource("AnimationLibrary_5py0a")
+}
+tree_root = SubResource("AnimationNodeStateMachine_vfpy5")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
+libraries = {
+"": SubResource("AnimationLibrary_5py0a")
+}

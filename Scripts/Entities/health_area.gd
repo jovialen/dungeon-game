@@ -11,9 +11,10 @@ class_name HealthArea
 
 func _ready():
 	connect("body_entered", _on_health_area_entered)
+	connect("area_entered", _on_health_area_entered)
 
 
-func _on_health_area_entered(node: Node2D):
+func _on_health_area_entered(node):
 	for hurt in hurters:
 		if node.is_in_group(hurt):
 			health.damage(fragility)
