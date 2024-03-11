@@ -16,18 +16,6 @@ Just another dungeon rogue-like.
 - [ ] Bosses
   - [ ] Floor bosses
   - [ ] Final boss
-- [ ] Map
-  - [ ] Maze generation
-  - [ ] Rooms
-
-### Uke 9
-
-- [x] Maze layout generation
-
-### Uke 10
-
-- [ ] Bomber Enemies
-  - [ ] Slimes
-  - [ ] Flame Spirits
-- [ ] Spawners
-  - [ ] Flame Spirit Spawners
+- [x] Map
+  - [x] Maze generation
+  - [x] Rooms
