@@ -5,9 +5,11 @@ extends CharacterBody2D
 @export var acceleration := 200
 @export var deceleration := 200
 
+@onready var health = $Health
+
 
 func _ready():
-	pass
+	health.connect("death", _on_player_death)
 
 
 func _process(delta):
@@ -16,7 +18,8 @@ func _process(delta):
 	if Input.is_action_pressed("primary_attack"):
 		var enemies = get_tree().get_nodes_in_group("enemies")
 		for enemy in enemies:
-			enemy.queue_free()
+			if global_position.distance_to(enemy.global_position) < 100:
+				enemy.queue_free()
 
 
 func _move(delta):
@@ -35,3 +38,7 @@ func _move(delta):
 	velocity.y = lerpf(velocity.y, target_speed.y, weight)
 	
 	move_and_slide()
+
+
+func _on_player_death():
+	get_tree().reload_current_scene()

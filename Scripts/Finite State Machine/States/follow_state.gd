@@ -27,8 +27,6 @@ func _process(delta):
 	
 	follower.velocity.x = lerpf(follower.velocity.x, target_speed.x, weight)
 	follower.velocity.y = lerpf(follower.velocity.y, target_speed.y, weight)
-	
-	follower.move_and_slide()
 
 
 func set_target(new_target: Node2D):

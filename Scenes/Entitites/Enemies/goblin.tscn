@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://blew0x2d0xcug"]
+[gd_scene load_steps=10 format=3 uid="uid://blew0x2d0xcug"]
 
 [ext_resource type="Texture2D" uid="uid://ee51e476jqbq" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_goblin.png" id="1_03emy"]
+[ext_resource type="Script" path="res://Scripts/Entities/Enemies/goblin.gd" id="1_8em0r"]
 [ext_resource type="Script" path="res://Scripts/Entities/flip_with_velocity.gd" id="2_wr5la"]
 [ext_resource type="Script" path="res://Scripts/Finite State Machine/finite_state_machine.gd" id="3_cr7mw"]
 [ext_resource type="Script" path="res://Scripts/Finite State Machine/States/follow_player_state.gd" id="4_87jtg"]
 [ext_resource type="Script" path="res://Scripts/Finite State Machine/States/monitoring_state.gd" id="5_uix5s"]
+[ext_resource type="Script" path="res://Scripts/Entities/health.gd" id="6_3nh32"]
+[ext_resource type="Script" path="res://Scripts/Entities/health_area.gd" id="7_cb6nm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxv04"]
 size = Vector2(8, 10)
@@ -13,6 +16,7 @@ size = Vector2(8, 10)
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_8em0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -40,3 +44,19 @@ watcher = NodePath("../..")
 watching_groups = Array[String](["player"])
 sight = 100
 next_state = NodePath("../FollowPlayerState")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_3nh32")
+max_health = 2
+
+[node name="HealthArea" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("7_cb6nm")
+health = NodePath("../Health")
+hurters = Array[String](["player"])
+resilience = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthArea"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_nxv04")

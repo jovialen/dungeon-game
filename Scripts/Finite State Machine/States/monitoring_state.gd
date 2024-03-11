@@ -7,7 +7,7 @@ class_name MonitoringState
 @export var sight := 20
 @export var next_state : State = null
 
-var watching = []
+var watching : Array[Node2D] = []
 
 
 func start():
