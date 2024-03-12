@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://epots40uiyij"]
+
+[ext_resource type="PackedScene" uid="uid://duinnw5kh3goe" path="res://Scenes/Entitites/Enemies/orc.tscn" id="1_ngmh1"]
+[ext_resource type="Texture2D" uid="uid://bcm03e6s0wt24" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_ogre.png" id="2_om71f"]
+[ext_resource type="Script" path="res://Scripts/Finite State Machine/States/summon_state.gd" id="3_x7lbd"]
+[ext_resource type="PackedScene" uid="uid://blew0x2d0xcug" path="res://Scenes/Entitites/Enemies/goblin.tscn" id="4_qmxs8"]
+[ext_resource type="Script" path="res://Scripts/Entities/Enemies/summon_timer.gd" id="5_041sm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71i4r"]
+resource_local_to_scene = true
+size = Vector2(18, 25)
+
+[node name="Orc King" instance=ExtResource("1_ngmh1")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_71i4r")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_om71f")
+
+[node name="FollowPlayerState" parent="FiniteStateMachine" index="0"]
+max_speed = 15
+
+[node name="MonitoringState" parent="FiniteStateMachine" index="1"]
+sight = 50
+
+[node name="StunState" parent="FiniteStateMachine" index="2"]
+stun_time = 0.0
+
+[node name="SummonState" type="Node" parent="FiniteStateMachine" index="3" node_paths=PackedStringArray("summoner", "next_state")]
+script = ExtResource("3_x7lbd")
+summoner = NodePath("../..")
+next_state = NodePath("../MonitoringState")
+summons = [{
+"count": 3,
+"summon": ExtResource("4_qmxs8")
+}, {
+"count": 2,
+"summon": ExtResource("1_ngmh1")
+}]
+range = 50
+
+[node name="SummonTimer" type="Node" parent="FiniteStateMachine/SummonState" index="0" node_paths=PackedStringArray("summoner")]
+script = ExtResource("5_041sm")
+summoner = NodePath("../../..")
+
+[node name="Health" parent="." index="3"]
+max_health = 10
+grace_period = 0.8
+
+[node name="CollisionShape2D" parent="HealthArea" index="0"]
+visible = true
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_71i4r")

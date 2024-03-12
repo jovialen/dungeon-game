@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccenofmq47lf1"]
+[gd_scene load_steps=5 format=3 uid="uid://ccenofmq47lf1"]
 
 [ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="1_cm87m"]
 [ext_resource type="Script" path="res://Scripts/Rooms/next_level_area.gd" id="2_jg3d8"]
+[ext_resource type="PackedScene" uid="uid://epots40uiyij" path="res://Scenes/Entitites/Enemies/orc_king.tscn" id="3_l82mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7fpi"]
 size = Vector2(34, 23)
@@ -20,3 +21,6 @@ script = ExtResource("2_jg3d8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Next Level Area" index="0"]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_j7fpi")
+
+[node name="Orc King" parent="." index="5" instance=ExtResource("3_l82mv")]
+position = Vector2(-1, -4)
