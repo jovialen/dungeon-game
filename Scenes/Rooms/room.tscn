@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://clt4orhp7tdoj"]
+[gd_scene load_steps=14 format=3 uid="uid://clt4orhp7tdoj"]
 
 [ext_resource type="TileSet" uid="uid://b1hj3kinmd1cr" path="res://Assets/0x72_16x16DungeonTileset.v5/16x16DungeonTilesetv5.tres" id="1_uw605"]
 [ext_resource type="Script" path="res://Scripts/Rooms/room.gd" id="2_8g1un"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1kdc"]
-size = Vector2(182, 186)
+size = Vector2(162, 158)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orena"]
+size = Vector2(182, 182)
 
 [sub_resource type="Animation" id="Animation_a7pe5"]
 resource_name = "close_room"
@@ -108,7 +111,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Area"]
-visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_m1kdc")
 
@@ -117,9 +119,8 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies Area"]
-visible = false
 position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_m1kdc")
+shape = SubResource("RectangleShape2D_orena")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
