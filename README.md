@@ -4,18 +4,18 @@ Just another dungeon rogue-like.
 
 ## Todo
 
-- [ ] Player
+- [x] Player
   - [x] Basic Movement
-  - [ ] Dashing
+  - [x] Dashing (Scrapped)
   - [x] Weapons and attacks
 - [ ] Enemies
   - [x] Melee
-  - [ ] Ranged
+  - [x] Ranged (Scrapped)
   - [ ] Bombers
   - [ ] Spawners
-- [ ] Bosses
-  - [ ] Floor bosses
-  - [ ] Final boss
+- [x] Bosses
+  - [x] Floor bosses
+  - [x] Final boss (Scrapped)
 - [x] Map
   - [x] Maze generation
   - [x] Rooms
