@@ -56,11 +56,20 @@ func _move(delta):
 
 
 func _attack():
+	var attack = weapon.instantiate()
+	
+	var dir = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
+	if dir == Vector2(0, 0):
+		attack.rotation = _angle_to_mouse()
+	else:
+		attack.rotation = dir.angle() + PI/2
+	add_child(attack)
+
+
+func _angle_to_mouse() -> float:
 	var mouse_position = get_global_mouse_position()
 	var angle_to_mouse = global_position.angle_to_point(mouse_position) + PI/2
-	var attack = weapon.instantiate()
-	attack.rotation = angle_to_mouse
-	add_child(attack)
+	return angle_to_mouse
 
 
 func _on_player_death():

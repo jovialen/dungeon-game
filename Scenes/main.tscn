@@ -1,34 +1,22 @@
 [gd_scene load_steps=12 format=3 uid="uid://s5cujmxlkqg8"]
 
-[ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="1_htkuu"]
-[ext_resource type="Script" path="res://Scripts/Rooms/maze.gd" id="1_v7jbl"]
-[ext_resource type="Script" path="res://Scripts/editor_only.gd" id="2_4yi42"]
+[ext_resource type="PackedScene" uid="uid://culxcb6v2iyyg" path="res://Scenes/Rooms/maze.tscn" id="1_322ok"]
 [ext_resource type="PackedScene" uid="uid://cccebbn3l5jta" path="res://Scenes/Rooms/crate_room_goblins.tscn" id="2_6l2lh"]
 [ext_resource type="PackedScene" uid="uid://cin7ob10yoaxh" path="res://Scenes/Entitites/player.tscn" id="2_pcksf"]
 [ext_resource type="PackedScene" uid="uid://du2k74vcn0dkc" path="res://Scenes/Rooms/crate_room_orc_armoured.tscn" id="3_6bhu8"]
 [ext_resource type="Script" path="res://Scripts/Rooms/room_camera.gd" id="3_iiqyb"]
 [ext_resource type="PackedScene" uid="uid://du1vcb04d2ahr" path="res://Scenes/Rooms/healing_room.tscn" id="4_fb1ph"]
 [ext_resource type="Texture2D" uid="uid://14fjifch8t5t" path="res://Assets/bitbrain_godot_tutorials_2d_lighting/light.png" id="4_v7h5a"]
-[ext_resource type="PackedScene" uid="uid://dc78pxqtar8wm" path="res://Scenes/Rooms/floor_enterance.tscn" id="5_1bp8f"]
+[ext_resource type="PackedScene" uid="uid://hisv54ufg0km" path="res://Scenes/Rooms/offering_room.tscn" id="5_6pp6g"]
+[ext_resource type="PackedScene" uid="uid://b1oynyu0tntb1" path="res://Scenes/Rooms/layered_room_goblins.tscn" id="6_lf515"]
+[ext_resource type="PackedScene" uid="uid://bu0os3jstyrop" path="res://Scenes/Rooms/layered_room_veteran.tscn" id="7_eiimc"]
 [ext_resource type="PackedScene" uid="uid://gmowhig7jejm" path="res://Scenes/GUI/heart_container.tscn" id="11_02q44"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Maze" type="Node2D" parent="."]
-y_sort_enabled = true
-script = ExtResource("1_v7jbl")
-room_size = Vector2(12, 13)
-rooms = Array[PackedScene]([ExtResource("2_6l2lh"), ExtResource("3_6bhu8"), ExtResource("4_fb1ph")])
-
-[node name="EditorOnlyRoom" type="Node" parent="Maze"]
-script = ExtResource("2_4yi42")
-
-[node name="Room" parent="Maze/EditorOnlyRoom" instance=ExtResource("1_htkuu")]
-layer_3/enabled = false
-
-[node name="Room2" parent="Maze/EditorOnlyRoom" instance=ExtResource("5_1bp8f")]
-position = Vector2(0, -202)
+[node name="Maze" parent="." instance=ExtResource("1_322ok")]
+rooms = Array[PackedScene]([ExtResource("2_6l2lh"), ExtResource("3_6bhu8"), ExtResource("4_fb1ph"), ExtResource("5_6pp6g"), ExtResource("6_lf515"), ExtResource("7_eiimc")])
 
 [node name="Player" parent="." instance=ExtResource("2_pcksf")]
 position = Vector2(0, -193)
@@ -57,11 +45,11 @@ texture = ExtResource("4_v7h5a")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.227451, 0.384314, 0.454902, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 scale = Vector2(5, 5)
 transform = Transform2D(5, 0, 0, 5, 0, 0)
 
-[node name="Heart Container" parent="CanvasLayer" instance=ExtResource("11_02q44")]
+[node name="Heart Container" parent="GUI" instance=ExtResource("11_02q44")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

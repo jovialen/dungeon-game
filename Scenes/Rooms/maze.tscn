@@ -1,0 +1,26 @@
+[gd_scene load_steps=9 format=3 uid="uid://culxcb6v2iyyg"]
+
+[ext_resource type="Script" path="res://Scripts/Rooms/maze.gd" id="1_0y4sc"]
+[ext_resource type="PackedScene" uid="uid://cccebbn3l5jta" path="res://Scenes/Rooms/crate_room_goblins.tscn" id="2_1gh8u"]
+[ext_resource type="PackedScene" uid="uid://du2k74vcn0dkc" path="res://Scenes/Rooms/crate_room_orc_armoured.tscn" id="3_7m37s"]
+[ext_resource type="PackedScene" uid="uid://du1vcb04d2ahr" path="res://Scenes/Rooms/healing_room.tscn" id="4_eda6f"]
+[ext_resource type="PackedScene" uid="uid://hisv54ufg0km" path="res://Scenes/Rooms/offering_room.tscn" id="5_exnid"]
+[ext_resource type="Script" path="res://Scripts/editor_only.gd" id="6_oe808"]
+[ext_resource type="PackedScene" uid="uid://clt4orhp7tdoj" path="res://Scenes/Rooms/room.tscn" id="7_1bxsc"]
+[ext_resource type="PackedScene" uid="uid://dc78pxqtar8wm" path="res://Scenes/Rooms/floor_enterance.tscn" id="8_qlbmh"]
+
+[node name="Maze" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_0y4sc")
+room_size = Vector2(12, 13)
+rooms = Array[PackedScene]([ExtResource("2_1gh8u"), ExtResource("3_7m37s"), ExtResource("4_eda6f"), ExtResource("5_exnid")])
+
+[node name="EditorOnlyRoom" type="Node" parent="."]
+script = ExtResource("6_oe808")
+
+[node name="Room" parent="EditorOnlyRoom" instance=ExtResource("7_1bxsc")]
+layer_3/enabled = false
+
+[node name="Room2" parent="EditorOnlyRoom" instance=ExtResource("8_qlbmh")]
+position = Vector2(0, -202)
+layer_3/tile_data = PackedInt32Array(-393216, -1, -1, -327681, -1, -1, -393218, 1310720, 2, -327682, 1310720, 3, -458751, 1245184, 2, -393215, 1245184, 3, -393217, -1, -1, -458752, -1, -1, -458754, 1048576, 0, -524287, 1179648, 0, -458753, -1, -1, -524288, -1, -1)
