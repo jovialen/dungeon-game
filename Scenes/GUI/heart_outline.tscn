@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ubtptlup7si"]
+
+[ext_resource type="PackedScene" uid="uid://1044thdwfyqe" path="res://Scenes/GUI/heart.tscn" id="1_vteff"]
+[ext_resource type="Texture2D" uid="uid://ds16gejuh6aqk" path="res://Assets/custom/skull_outline.png" id="2_f3tx4"]
+
+[node name="Heart" instance=ExtResource("1_vteff")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_f3tx4")

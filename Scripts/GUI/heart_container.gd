@@ -3,6 +3,7 @@ extends HBoxContainer
 var player : Node2D = null
 
 const HEART = preload("res://Scenes/GUI/heart.tscn")
+const HEART_OUTLINE = preload("res://Scenes/GUI/heart_outline.tscn")
 
 
 func _ready():
@@ -18,3 +19,5 @@ func _on_player_health_change(health):
 	
 	for i in health:
 		call_deferred("add_child", HEART.instantiate())
+	for i in player.get_max_health() - health:
+		call_deferred("add_child", HEART_OUTLINE.instantiate())
