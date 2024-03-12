@@ -49,6 +49,8 @@ var closed := false
 func _ready():
 	area_2d.connect("body_entered", _player_entered)
 	animation_tree.connect("animation_finished", _animation_finished)
+	
+	open()
 
 
 func _process(delta):
@@ -67,12 +69,14 @@ func open() -> void:
 	closed = false
 	animation_tree["parameters/conditions/room_closed"] = false
 	animation_tree["parameters/conditions/room_opened"] = true
+	_enable_enemies(false)
 
 
 func close() -> void:
 	closed = true
 	animation_tree["parameters/conditions/room_closed"] = true
 	animation_tree["parameters/conditions/room_opened"] = false
+	_enable_enemies(true)
 
 
 func reset() -> void:
@@ -96,6 +100,13 @@ func _clear_room():
 	open()
 	cleared = true
 	room_cleared.emit()
+
+
+func _enable_enemies(enable: bool) -> void:
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		enemy.set_process(enable)
+		enemy.set_physics_process(enable)
 
 
 func _animation_finished(ignore):
