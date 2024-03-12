@@ -2,6 +2,10 @@
 
 Just another dungeon rogue-like.
 
+## Play
+
+Play the game by either downloading the [latest release](https://github.com/jovialen/dungeon-game/releases/latest) or on the web [here](https://jovialen.itch.io/dungeon-game).
+
 ## Todo
 
 - [x] Player
