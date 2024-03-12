@@ -1,0 +1,4 @@
+16x16 Dungeon Tileset : Made by 0x72 (Robert) : https://0x72.itch.io/16x16-dungeon-tileset
+pixel art digits      : ahmadmanga            : https://opengameart.org/content/numbers-0-9-7x10px
+light sprite          : bitbrain              : https://github.com/bitbrain/godot-tutorials
+custom                : jovialen              : https://github.com/jovialen/
