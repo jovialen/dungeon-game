@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cep05ty2jjslo"]
+[gd_scene load_steps=5 format=3 uid="uid://cep05ty2jjslo"]
 
 [ext_resource type="PackedScene" uid="uid://duinnw5kh3goe" path="res://Scenes/Entitites/Enemies/orc.tscn" id="1_cplu3"]
 [ext_resource type="Texture2D" uid="uid://dpxrnflvi23ch" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_orc_armored.png" id="2_bcyvy"]
+[ext_resource type="AudioStream" uid="uid://bd1pqyvudjlb1" path="res://Assets/jsfxr/hitHurt_armour.wav" id="3_nhyhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gguj"]
 resource_local_to_scene = true
@@ -28,3 +29,6 @@ grace_period = 1.5
 
 [node name="CollisionShape2D" parent="HealthArea" index="0"]
 shape = SubResource("RectangleShape2D_4gguj")
+
+[node name="Hurt" parent="." index="5"]
+stream = ExtResource("3_nhyhq")

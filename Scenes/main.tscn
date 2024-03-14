@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://s5cujmxlkqg8"]
+[gd_scene load_steps=14 format=3 uid="uid://s5cujmxlkqg8"]
 
 [ext_resource type="PackedScene" uid="uid://culxcb6v2iyyg" path="res://Scenes/Rooms/maze.tscn" id="1_322ok"]
 [ext_resource type="PackedScene" uid="uid://cccebbn3l5jta" path="res://Scenes/Rooms/crate_room_goblins.tscn" id="2_6l2lh"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b1oynyu0tntb1" path="res://Scenes/Rooms/layered_room_goblins.tscn" id="6_lf515"]
 [ext_resource type="PackedScene" uid="uid://bu0os3jstyrop" path="res://Scenes/Rooms/layered_room_veteran.tscn" id="7_eiimc"]
 [ext_resource type="PackedScene" uid="uid://gmowhig7jejm" path="res://Scenes/GUI/heart_container.tscn" id="11_02q44"]
+[ext_resource type="AudioStream" uid="uid://b7sjugruubrkn" path="res://Assets/anonymous_music/music.mp3" id="12_rlyuk"]
+[ext_resource type="Script" path="res://Scripts/looping_music.gd" id="13_5i3tl"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -58,3 +60,8 @@ offset_top = 5.0
 offset_right = 51.0
 offset_bottom = 45.0
 mouse_filter = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_rlyuk")
+volume_db = -5.0
+script = ExtResource("13_5i3tl")

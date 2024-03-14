@@ -2,3 +2,6 @@
 pixel art digits      : ahmadmanga            : https://opengameart.org/content/numbers-0-9-7x10px
 light sprite          : bitbrain              : https://github.com/bitbrain/godot-tutorials
 custom                : jovialen              : https://github.com/jovialen/
+jsfxr                 : jsfxr                 : https://sfxr.me/
+vinrax monster scream : vinrax                : https://opengameart.org/content/horror-scream1
+music                 : anonymous             : https://opengameart.org/content/rpg-title-screen-music-pack

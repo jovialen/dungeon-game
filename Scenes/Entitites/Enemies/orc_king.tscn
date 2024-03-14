@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://epots40uiyij"]
+[gd_scene load_steps=9 format=3 uid="uid://epots40uiyij"]
 
 [ext_resource type="PackedScene" uid="uid://duinnw5kh3goe" path="res://Scenes/Entitites/Enemies/orc.tscn" id="1_ngmh1"]
 [ext_resource type="Texture2D" uid="uid://bcm03e6s0wt24" path="res://Assets/0x72_16x16DungeonTileset.v5/items/monster_ogre.png" id="2_om71f"]
 [ext_resource type="Script" path="res://Scripts/Finite State Machine/States/summon_state.gd" id="3_x7lbd"]
 [ext_resource type="PackedScene" uid="uid://blew0x2d0xcug" path="res://Scenes/Entitites/Enemies/goblin.tscn" id="4_qmxs8"]
 [ext_resource type="Script" path="res://Scripts/Entities/Enemies/summon_timer.gd" id="5_041sm"]
+[ext_resource type="AudioStream" uid="uid://df8omgwx0erv4" path="res://Assets/vinrax_horror_scream/scream_horror1.mp3" id="6_ig20i"]
+[ext_resource type="Script" path="res://Scripts/Entities/Enemies/scream_on_player_enter.gd" id="7_ju6wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71i4r"]
 resource_local_to_scene = true
 size = Vector2(18, 25)
 
 [node name="Orc King" instance=ExtResource("1_ngmh1")]
+collision_mask = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 3.5)
@@ -53,3 +56,7 @@ grace_period = 0.8
 visible = true
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_71i4r")
+
+[node name="Scream" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("6_ig20i")
+script = ExtResource("7_ju6wu")

@@ -1,7 +1,7 @@
 extends Node
 
 
-@export var level_size := Vector2(3, 3)
+@export var level_size := Vector2(2, 2)
 @export var level_num := 1
 
 var highscore := 1

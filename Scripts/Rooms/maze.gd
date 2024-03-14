@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var autoload := true
-@export var maze_size := Vector2(3, 3)
+@export var maze_size := Vector2(2, 2)
 @export var tile_size := Vector2(16, 16)
 @export var room_size := Vector2(20, 20)
 @export var room_enterance := preload("res://Scenes/Rooms/floor_enterance.tscn")
