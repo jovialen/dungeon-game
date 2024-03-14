@@ -24,14 +24,16 @@ deceleration = 225
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_iscje")
 
-[node name="Health Area" type="Area2D" parent="." node_paths=PackedStringArray("health", "hurt_sound")]
+[node name="Health Area" type="Area2D" parent="." node_paths=PackedStringArray("health", "hurt_sound", "heal_sound")]
 collision_layer = 0
 collision_mask = 10
 priority = 1
 script = ExtResource("2_ivtd2")
 health = NodePath("../Health")
 healpers = Array[String](["health_potion"])
+resilience = 2
 hurt_sound = NodePath("../Hurt")
+heal_sound = NodePath("../Heal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health Area"]
 position = Vector2(0, 2.5)
